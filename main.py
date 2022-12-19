@@ -1,3 +1,4 @@
+# add matplotlib and numpy
 import random
 import pyglet
 from collections import Counter
