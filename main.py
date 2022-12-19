@@ -1,11 +1,11 @@
 import random
 import pyglet
-from collections import Counter
-import matplotlib.pyplot as plt
-import numpy as np
+# from collections import Counter
+# import matplotlib.pyplot as plt
+# import numpy as np
 
 
-countAll = []
+# countAll = []
 
 numbers = list(range(1, 27))
 
@@ -26,30 +26,30 @@ def on_mouse_press(x, y, button, modifiers):
     while num == label.text:
         num = random.choice(numbers)
     label.text = str(num)
-    countAll.append(num)
+    # countAll.append(num)
     
 
 
 pyglet.app.run()
 
-COUNTS = Counter(countAll)
-total_count = len(countAll)  
-for number, count in COUNTS.items():
-    probability = (count / total_count)*100  
-    print(f"数字 {number} 的出现概率为 {probability:.2f} %")
-print(countAll)
+# COUNTS = Counter(countAll)
+# total_count = len(countAll)  
+# for number, count in COUNTS.items():
+#     probability = (count / total_count)*100  
+#     print(f"数字 {number} 的出现概率为 {probability:.2f} %")
+# print(countAll)
 
 
 
-mean = np.mean(numbers)  # 计算数组的均值
-std = np.std(numbers)  # 计算数组的标准差
+# mean = np.mean(numbers)  # 计算数组的均值
+# std = np.std(numbers)  # 计算数组的标准差
 
-x = np.linspace(mean - 3*std, mean + 3*std, 100)  # 生成 x 轴的数据
-y = np.exp(-0.5 * ((x - mean) / std) ** 2) / (std * np.sqrt(2 * np.pi))  # 计算 y 轴的数据
+# x = np.linspace(mean - 3*std, mean + 3*std, 100)  # 生成 x 轴的数据
+# y = np.exp(-0.5 * ((x - mean) / std) ** 2) / (std * np.sqrt(2 * np.pi))  # 计算 y 轴的数据
 
-plt.plot(x, y)
-plt.show()
+# plt.plot(x, y)
+# plt.show()
 
 
-plt.hist(COUNTS)
-plt.show()
+# plt.hist(COUNTS)
+# plt.show()
