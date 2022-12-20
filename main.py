@@ -4,22 +4,19 @@ import random
 class MainFrame(wx.Frame):
     def __init__(self):
         super().__init__(None, title='Random Number Generator')
+        self.SetSize((550, 300))
+        self.Center()
 
         # create menu bar
         self.menu_bar = wx.MenuBar()
         self.SetMenuBar(self.menu_bar)
 
-        # create file menu
-        self.file_menu = wx.Menu()
-        self.menu_bar.Append(self.file_menu, '&File')
-        self.Bind(wx.EVT_MENU, self.on_exit, self.file_menu.Append(wx.ID_EXIT, 'E&xit\tCtrl+W'))
-
         # create mode menu
         self.mode_menu = wx.Menu()
         self.menu_bar.Append(self.mode_menu, '&Mode')
-        self.Bind(wx.EVT_MENU, self.on_mode_1, self.mode_menu.Append(wx.ID_ANY, '&Mode 1\tCtrl+1'))
-        self.Bind(wx.EVT_MENU, self.on_mode_2, self.mode_menu.Append(wx.ID_ANY, '&Mode 2\tCtrl+2'))
-        self.Bind(wx.EVT_MENU, self.on_mode_3, self.mode_menu.Append(wx.ID_ANY, '&Mode 3\tCtrl+3'))
+        self.Bind(wx.EVT_MENU, self.on_mode_1, self.mode_menu.Append(wx.ID_ANY, '&Mode 1'))
+        self.Bind(wx.EVT_MENU, self.on_mode_2, self.mode_menu.Append(wx.ID_ANY, '&Mode 2'))
+        self.Bind(wx.EVT_MENU, self.on_mode_3, self.mode_menu.Append(wx.ID_ANY, '&Mode 3'))
 
         # create main panel
         self.panel = wx.Panel(self)
@@ -33,6 +30,10 @@ class MainFrame(wx.Frame):
         self.mode_1_button = wx.Button(self.mode_1_panel, label='Generate')
         self.mode_1_sizer.Add(self.mode_1_button, 0, wx.ALL, 5)
         self.mode_1_text = wx.StaticText(self.mode_1_panel, label='', style=wx.ALIGN_CENTER)
+
+        font = wx.Font(30, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL)
+        self.mode_1_text.SetFont(font)
+
         self.mode_1_sizer.Add(self.mode_1_text, 0, wx.ALL, 5)
         self.Bind(wx.EVT_BUTTON, self.on_mode_1_button, self.mode_1_button)
         self.sizer.Add(self.mode_1_panel, 0, wx.EXPAND)
@@ -45,6 +46,11 @@ class MainFrame(wx.Frame):
         self.mode_2_button = wx.Button(self.mode_2_panel, label='Generate')
         self.mode_2_sizer.Add(self.mode_2_button, 0, wx.ALL, 5)
         self.mode_2_text = wx.StaticText(self.mode_2_panel, label='', style=wx.ALIGN_CENTER)
+
+
+        font = wx.Font(30, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL)
+        self.mode_2_text.SetFont(font)
+
         self.mode_2_sizer.Add(self.mode_2_text, 0, wx.ALL, 5)
         self.Bind(wx.EVT_BUTTON, self.on_mode_2_button, self.mode_2_button)
         self.sizer.Add(self.mode_2_panel, 0, wx.EXPAND)
@@ -66,6 +72,10 @@ class MainFrame(wx.Frame):
         self.mode_3_button = wx.Button(self.mode_3_panel, label='Generate')
         self.mode_3_sizer.Add(self.mode_3_button, 0, wx.ALL, 5)
         self.mode_3_text = wx.StaticText(self.mode_3_panel, label='', style=wx.ALIGN_CENTER)
+
+        font = wx.Font(30, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL)
+        self.mode_3_text.SetFont(font)
+
         self.mode_3_sizer.Add(self.mode_3_text, 0, wx.ALL, 5)
         self.Bind(wx.EVT_BUTTON, self.on_mode_3_button, self.mode_3_button)
         self.sizer.Add(self.mode_3_panel, 0, wx.EXPAND)
@@ -103,7 +113,7 @@ class MainFrame(wx.Frame):
             num = random.randint(1, 26)
             if num not in nums:
                 nums.append(num)
-        self.mode_2_text.SetLabel(', '.join(str(num) for num in nums))
+        self.mode_2_text.SetLabel(' '.join(str(num) for num in nums))
 
     def on_mode_3_button(self, event):
         try:
