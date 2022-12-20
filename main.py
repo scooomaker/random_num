@@ -22,12 +22,17 @@ class MainFrame(wx.Frame):
         self.panel = wx.Panel(self)
         self.sizer = wx.BoxSizer(wx.VERTICAL)
         self.panel.SetSizer(self.sizer)
+        self.SetBackgroundColour(wx.Colour(255, 255, 255))
 
         # create mode 1 panel
         self.mode_1_panel = wx.Panel(self.panel)
         self.mode_1_sizer = wx.BoxSizer(wx.HORIZONTAL)
         self.mode_1_panel.SetSizer(self.mode_1_sizer)
+
+        font = wx.Font(16, wx.DEFAULT, wx.NORMAL, wx.NORMAL)
+        
         self.mode_1_button = wx.Button(self.mode_1_panel, label='生成',size=(150, 50))
+        self.mode_1_button.SetFont(font) # 设置按钮字体大小
         self.mode_1_sizer.Add(self.mode_1_button, 0, wx.ALL, 85)
         self.mode_1_text = wx.StaticText(self.mode_1_panel, label='', style=wx.ALIGN_BOTTOM)
 
