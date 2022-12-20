@@ -3,8 +3,8 @@ import random
 
 class MainFrame(wx.Frame):
     def __init__(self):
-        super().__init__(None, title='Random Number Generator')
-        self.SetSize((550, 300))
+        super().__init__(None, title='随机数生成器(1-26) for class 17')
+        self.SetSize((560, 300))
         self.Center()
 
         # create menu bar
@@ -13,10 +13,10 @@ class MainFrame(wx.Frame):
 
         # create mode menu
         self.mode_menu = wx.Menu()
-        self.menu_bar.Append(self.mode_menu, '&Mode')
-        self.Bind(wx.EVT_MENU, self.on_mode_1, self.mode_menu.Append(wx.ID_ANY, '&Mode 1'))
-        self.Bind(wx.EVT_MENU, self.on_mode_2, self.mode_menu.Append(wx.ID_ANY, '&Mode 2'))
-        self.Bind(wx.EVT_MENU, self.on_mode_3, self.mode_menu.Append(wx.ID_ANY, '&Mode 3'))
+        self.menu_bar.Append(self.mode_menu, '&选项')
+        self.Bind(wx.EVT_MENU, self.on_mode_1, self.mode_menu.Append(wx.ID_ANY, '&单数随机生成'))
+        self.Bind(wx.EVT_MENU, self.on_mode_2, self.mode_menu.Append(wx.ID_ANY, '&多数随机生成'))
+        self.Bind(wx.EVT_MENU, self.on_mode_3, self.mode_menu.Append(wx.ID_ANY, '&自定义生成'))
 
         # create main panel
         self.panel = wx.Panel(self)
@@ -27,23 +27,22 @@ class MainFrame(wx.Frame):
         self.mode_1_panel = wx.Panel(self.panel)
         self.mode_1_sizer = wx.BoxSizer(wx.HORIZONTAL)
         self.mode_1_panel.SetSizer(self.mode_1_sizer)
-        self.mode_1_button = wx.Button(self.mode_1_panel, label='Generate')
-        self.mode_1_sizer.Add(self.mode_1_button, 0, wx.ALL, 5)
-        self.mode_1_text = wx.StaticText(self.mode_1_panel, label='', style=wx.ALIGN_CENTER)
+        self.mode_1_button = wx.Button(self.mode_1_panel, label='生成',size=(150, 50))
+        self.mode_1_sizer.Add(self.mode_1_button, 0, wx.ALL, 85)
+        self.mode_1_text = wx.StaticText(self.mode_1_panel, label='', style=wx.ALIGN_BOTTOM)
 
-        font = wx.Font(30, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL)
-        self.mode_1_text.SetFont(font)
+        self.mode_1_text.SetFont(wx.Font(35, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL))
 
-        self.mode_1_sizer.Add(self.mode_1_text, 0, wx.ALL, 5)
+        self.mode_1_sizer.Add(self.mode_1_text, 0, wx.ALL, 85)
         self.Bind(wx.EVT_BUTTON, self.on_mode_1_button, self.mode_1_button)
         self.sizer.Add(self.mode_1_panel, 0, wx.EXPAND)
-        self.mode_1_panel.Hide()
+        self.mode_1_panel.Show()
 
         # create mode 2 panel
         self.mode_2_panel = wx.Panel(self.panel)
         self.mode_2_sizer = wx.BoxSizer(wx.HORIZONTAL)
         self.mode_2_panel.SetSizer(self.mode_2_sizer)
-        self.mode_2_button = wx.Button(self.mode_2_panel, label='Generate')
+        self.mode_2_button = wx.Button(self.mode_2_panel, label='生成')
         self.mode_2_sizer.Add(self.mode_2_button, 0, wx.ALL, 5)
         self.mode_2_text = wx.StaticText(self.mode_2_panel, label='', style=wx.ALIGN_CENTER)
 
@@ -61,15 +60,15 @@ class MainFrame(wx.Frame):
         self.mode_3_panel = wx.Panel(self.panel)
         self.mode_3_sizer = wx.BoxSizer(wx.HORIZONTAL)
         self.mode_3_panel.SetSizer(self.mode_3_sizer)
-        self.mode_3_text_1 = wx.StaticText(self.mode_3_panel, label='Enter range:')
+        self.mode_3_text_1 = wx.StaticText(self.mode_3_panel, label='输入整数，从')
         self.mode_3_sizer.Add(self.mode_3_text_1, 0, wx.ALL, 5)
         self.mode_3_text_ctrl_1 = wx.TextCtrl(self.mode_3_panel)
         self.mode_3_sizer.Add(self.mode_3_text_ctrl_1, 0, wx.ALL, 5)
-        self.mode_3_text_2 = wx.StaticText(self.mode_3_panel, label='to')
+        self.mode_3_text_2 = wx.StaticText(self.mode_3_panel, label='到')
         self.mode_3_sizer.Add(self.mode_3_text_2, 0, wx.ALL, 5)
         self.mode_3_text_ctrl_2 = wx.TextCtrl(self.mode_3_panel)
         self.mode_3_sizer.Add(self.mode_3_text_ctrl_2, 0, wx.ALL, 5)
-        self.mode_3_button = wx.Button(self.mode_3_panel, label='Generate')
+        self.mode_3_button = wx.Button(self.mode_3_panel, label='生成')
         self.mode_3_sizer.Add(self.mode_3_button, 0, wx.ALL, 5)
         self.mode_3_text = wx.StaticText(self.mode_3_panel, label='', style=wx.ALIGN_CENTER)
 
@@ -123,7 +122,7 @@ class MainFrame(wx.Frame):
                 num_1, num_2 = num_2, num_1
             self.mode_3_text.SetLabel(str(random.randint(num_1, num_2)))
         except ValueError:
-            self.mode_3_text.SetLabel('Invalid input')
+            self.mode_3_text.SetLabel('error')
 
 if __name__ == '__main__':
     app = wx.App()
